@@ -6,13 +6,19 @@ final homeUrl = Uri.parse('https://blog.codefactory.ai');
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
 
-  WebViewController controller = WebViewController()..loadRequest(homeUrl);
+  WebViewController controller = WebViewController()
+    ..setJavaScriptMode(JavaScriptMode.unrestricted)
+    ..loadRequest(homeUrl);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         actions: [
-          IconButton(onPressed: (){}, icon: Icons.home)
+          IconButton(onPressed: (){
+            controller.loadRequest(homeUrl);
+          }, icon: Icon(
+            Icons.home
+          ) )
         ],
         backgroundColor: Colors.orange,
         title: Text('code Factory'),
